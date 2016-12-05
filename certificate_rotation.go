@@ -9,7 +9,6 @@ import (
 	"encoding/base64"
 	"encoding/pem"
 	"fmt"
-	"log"
 	"math/big"
 	"sync"
 	"time"
@@ -116,11 +115,7 @@ func main() {
 			fmt.Println(err.Error())
 			continue
 		}
-		n, err := conn.Write([]byte("Hello over TLS\n"))
-		if err != nil {
-			log.Println(n, err)
-			continue
-		}
+		fmt.Fprintf(conn, "Hello over TLS\n")
 		conn.Close()
 	}
 }
